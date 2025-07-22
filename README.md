@@ -1,27 +1,96 @@
-# Symphonic-AI
-Symphonic AI allows you to conduct a virtual orchestra using only your web browser &amp; webcam.
+Symphonic-AI: Music Generation with LSTM
+Symphonic-AI is a deep learning project focused on generating novel musical sequences. It learns the patterns, melodies, and harmonies from a given dataset of musical pieces and uses that knowledge to compose new music. This implementation uses a Long Short-Term Memory (LSTM) network, a type of Recurrent Neural Network (RNN), which is well-suited for sequence generation tasks.
 
-It uses [Posenet] to detect your body pose, and from that how fast you are moving your hands. Using this data and the [Tone.js] web audio library, it plays real samples of orchestral instruments playing individual notes at the speed of your conducting, which play live from a score you that can edit.
+🎶 Features
+MIDI Data Processing: Parses and processes MIDI files to extract musical notes and chords using the Music21 toolkit.
 
-## Quick Start
+Data Serialization: Uses pickle to save processed note sequences, allowing for quick reloading without needing to re-process the entire MIDI dataset.
 
-```sh
-yarn  # Install dependencies
-```
-```sh
-yarn start  # Start a local dev server
-```
-```sh
-yarn build  # Build static site into the /dist folder
-```
+Sequence Modeling: Creates sequences of musical events to be fed into the neural network.
 
-## Code Structure
+LSTM Network: Utilizes a robust LSTM network to learn the temporal dependencies and structure of the music.
 
-Symphonic AI is built in vanilla JS without a framework. Each JS file in the `/scripts` folder contains a class module, with each class controlling one portion of the app (also there are some helper files with useful functions). It's designed so that modules can be used or deleted according to how you want to remix the app.
+Efficient Training: Implements ModelCheckpoint to save the best version of the model during training, preventing loss of progress.
 
-- `main.js` controls the primary app state & functions, including loading the app and instantiating the other classes
-- `renderer.js` handles all the UI/DOM updating
-- `orchestra.js` controls the graphic of the orchestra, made with PIXI.js
-- `pose-controller.js` uses TFJS to get the pose state from the webcam with Posenet
-- `posenet-renderer.js` renders the pose skeleton in the interface
-- `audio-player.js` handles the MIDI playback & loading of samples using Tone.js
+Music Generation: Generates new musical note sequences based on the patterns learned by the model.
+
+Output to MIDI: Converts the generated sequences back into a playable MIDI file.
+
+🛠️ Tech Stack
+Python: The core programming language.
+
+TensorFlow & Keras: For building and training the LSTM model.
+
+Music21: A powerful toolkit for computer-aided musicology, used for parsing MIDI files and handling musical objects.
+
+NumPy: For numerical operations and data manipulation.
+
+Pickle: For serializing and de-serializing Python objects (saving/loading processed data).
+
+Glob: For finding files matching a specific pattern (locating all MIDI files).
+
+⚙️ Setup and Installation
+Clone the repository:
+
+git clone https://github.com/SCYTHE6/Symphonic-AI.git
+cd Symphonic-AI
+
+Install dependencies:
+It's recommended to create a virtual environment first.
+
+pip install -r requirements.txt
+
+(Ensure your requirements.txt includes tensorflow, music21, and numpy)
+
+Download the dataset:
+
+The project is designed to work with MIDI datasets. The maestro-v3.0.0.zip file in the repository contains the Maestro dataset.
+
+Extract the MIDI files into a known directory.
+
+🚀 How to Run
+The core logic is contained within the Symphonic-AI.ipynb Jupyter Notebook.
+
+Launch Jupyter Notebook:
+
+jupyter notebook
+
+Open Symphonic-AI.ipynb.
+
+Modify the path in the notebook to point to your directory of MIDI files.
+
+Run the cells in order to:
+
+Parse all MIDI files and extract notes and chords.
+
+Save the processed notes to a pickle file.
+
+Load the notes and create sequences for training.
+
+Build and compile the LSTM model.
+
+Train the model on the prepared sequences.
+
+Generate new note sequences using the trained model.
+
+Save the generated output as a new MIDI file (e.g., test_output.mid).
+
+🧠 Model Architecture
+The model is built using a Keras Sequential model with multiple LSTM layers, which excel at learning from sequential data.
+
+Input Layer: Takes sequences of musical notes/chords.
+
+LSTM Layers: Multiple LSTM layers to capture long-term dependencies.
+
+Dropout Layers: Included to prevent overfitting by randomly dropping units during training.
+
+Dense Layers: Fully connected layers to process the LSTM output.
+
+Batch Normalization: Used to stabilize and accelerate the training process.
+
+Activation Layer: A final softmax activation layer to predict the next note in the sequence.
+
+🎼 Generated Music
+After running the notebook, you will find a test_output.mid file (or a similar name) in your directory. You can play this file using any MIDI player or digital audio workstation (DAW) to listen to the music created by your AI!
+
+This README was generated by Gemini.
