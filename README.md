@@ -2,93 +2,97 @@ Symphonic-AI: Music Generation with LSTM
 Symphonic-AI is a deep learning project focused on generating novel musical sequences. It learns the patterns, melodies, and harmonies from a given dataset of musical pieces and uses that knowledge to compose new music. This implementation uses a Long Short-Term Memory (LSTM) network, a type of Recurrent Neural Network (RNN), which is well-suited for sequence generation tasks.
 
 🎶 Features
-MIDI Data Processing: Parses and processes MIDI files to extract musical notes and chords using the Music21 toolkit.
 
-Data Serialization: Uses pickle to save processed note sequences, allowing for quick reloading without needing to re-process the entire MIDI dataset.
+• MIDI Data Processing: Parses and processes MIDI files to extract musical notes and chords using the Music21 toolkit.
 
-Sequence Modeling: Creates sequences of musical events to be fed into the neural network.
+• Data Serialization: Uses pickle to save processed note sequences, allowing for quick reloading without needing to re-process the entire MIDI dataset.
 
-LSTM Network: Utilizes a robust LSTM network to learn the temporal dependencies and structure of the music.
+• Sequence Modeling: Creates sequences of musical events to be fed into the neural network.
 
-Efficient Training: Implements ModelCheckpoint to save the best version of the model during training, preventing loss of progress.
+• LSTM Network: Utilizes a robust LSTM network to learn the temporal dependencies and structure of the music.
 
-Music Generation: Generates new musical note sequences based on the patterns learned by the model.
+• Efficient Training: Implements ModelCheckpoint to save the best version of the model during training, preventing loss of progress.
 
-Output to MIDI: Converts the generated sequences back into a playable MIDI file.
+• Music Generation: Generates new musical note sequences based on the patterns learned by the model.
+
+• Output to MIDI: Converts the generated sequences back into a playable MIDI file.
 
 🛠️ Tech Stack
-Python: The core programming language.
 
-TensorFlow & Keras: For building and training the LSTM model.
+• Python: The core programming language.
 
-Music21: A powerful toolkit for computer-aided musicology, used for parsing MIDI files and handling musical objects.
+• TensorFlow & Keras: For building and training the LSTM model.
 
-NumPy: For numerical operations and data manipulation.
+• Music21: A powerful toolkit for computer-aided musicology, used for parsing MIDI files and handling musical objects.
 
-Pickle: For serializing and de-serializing Python objects (saving/loading processed data).
+• NumPy: For numerical operations and data manipulation.
 
-Glob: For finding files matching a specific pattern (locating all MIDI files).
+• Pickle: For serializing and de-serializing Python objects (saving/loading processed data).
+
+• Glob: For finding files matching a specific pattern (locating all MIDI files).
 
 ⚙️ Setup and Installation
-Clone the repository:
+
+1 - Clone the repository:
 
 git clone https://github.com/SCYTHE6/Symphonic-AI.git
 cd Symphonic-AI
 
-Install dependencies:
+2 - Install dependencies:
 It's recommended to create a virtual environment first.
 
 pip install -r requirements.txt
 
 (Ensure your requirements.txt includes tensorflow, music21, and numpy)
 
-Download the dataset:
+3 - Download the dataset:
 
 The project is designed to work with MIDI datasets. The maestro-v3.0.0.zip file in the repository contains the Maestro dataset.
 
 Extract the MIDI files into a known directory.
 
 🚀 How to Run
+
 The core logic is contained within the Symphonic-AI.ipynb Jupyter Notebook.
 
-Launch Jupyter Notebook:
+1 - Launch Jupyter Notebook:
 
 jupyter notebook
 
-Open Symphonic-AI.ipynb.
+2 - Open Symphonic-AI.ipynb.
 
-Modify the path in the notebook to point to your directory of MIDI files.
+3 - Modify the path in the notebook to point to your directory of MIDI files.
 
-Run the cells in order to:
+4 - Run the cells in order to:
 
-Parse all MIDI files and extract notes and chords.
+• Parse all MIDI files and extract notes and chords.
 
-Save the processed notes to a pickle file.
+• Save the processed notes to a pickle file.
 
-Load the notes and create sequences for training.
+• Load the notes and create sequences for training.
 
-Build and compile the LSTM model.
+• Build and compile the LSTM model.
 
-Train the model on the prepared sequences.
+• Train the model on the prepared sequences.
 
-Generate new note sequences using the trained model.
+• Generate new note sequences using the trained model.
 
-Save the generated output as a new MIDI file (e.g., test_output.mid).
+• Save the generated output as a new MIDI file (e.g., test_output.mid).
 
 🧠 Model Architecture
 The model is built using a Keras Sequential model with multiple LSTM layers, which excel at learning from sequential data.
 
-Input Layer: Takes sequences of musical notes/chords.
+• Input Layer: Takes sequences of musical notes/chords.
 
-LSTM Layers: Multiple LSTM layers to capture long-term dependencies.
+• LSTM Layers: Multiple LSTM layers to capture long-term dependencies.
 
-Dropout Layers: Included to prevent overfitting by randomly dropping units during training.
+• Dropout Layers: Included to prevent overfitting by randomly dropping units during training.
 
-Dense Layers: Fully connected layers to process the LSTM output.
+• Dense Layers: Fully connected layers to process the LSTM output.
 
-Batch Normalization: Used to stabilize and accelerate the training process.
+• Batch Normalization: Used to stabilize and accelerate the training process.
 
-Activation Layer: A final softmax activation layer to predict the next note in the sequence.
+• Activation Layer: A final softmax activation layer to predict the next note in the sequence.
 
 🎼 Generated Music
 After running the notebook, you will find a test_output.mid file (or a similar name) in your directory. You can play this file using any MIDI player or digital audio workstation (DAW) to listen to the music created by your AI!
